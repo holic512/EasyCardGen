@@ -1,6 +1,17 @@
 <script setup>
 
 import {ChatSquare, CircleCheck} from "@element-plus/icons-vue";
+
+// 登录跳转
+import {useRouter} from 'vue-router'
+
+const router = useRouter()
+
+function Sign() {
+  router.push('/sign')
+}
+
+
 </script>
 
 <template>
