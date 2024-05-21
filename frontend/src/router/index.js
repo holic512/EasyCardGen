@@ -13,7 +13,7 @@ const router = createRouter({
         {
             path:'/sign',
             name:'sign',
-            component:()=>import('../views/SignPage/index.vue')
+            component:()=>import('../views/SignPage/login.vue')
 
         }
     ]

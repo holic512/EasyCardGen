@@ -3,7 +3,7 @@
 </script>
 
 <template>
-现在是登录页面
+  现在是注册页面
 </template>
 
 <style scoped>
