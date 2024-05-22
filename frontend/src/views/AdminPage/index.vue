@@ -18,7 +18,7 @@ import {
 
 // 用于控制页面展示
 import AllSetting from './AllSetting/index.vue'
-import MerchantMm from "./UserMm/MerchantMm/index.vue"
+import UserMm from "./UserMm/UserMm/index.vue"
 import Dashboard from './Dashboard/index.vue'
 
 const index = ref("1")
@@ -167,7 +167,9 @@ function toggleCollapse() {
         <!--        导航栏-->
         <Dashboard v-if="index === '1'"></Dashboard>
 
-        <merchant-mm v-else-if="index === '2-1'"></merchant-mm>
+        <UserMm v-else-if="index === '2-1'"></UserMm>
+
+
         <AllSetting v-else-if="index === '10'"/>
       </el-main>
 
