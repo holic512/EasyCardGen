@@ -1,36 +1,17 @@
-import {createRouter, createWebHistory} from 'vue-router'
+// router.js
 
-import HomeView from '../views/HomePage.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import homeRoutes from './routes/homeRoutes';
+import signRoutes from './routes/signRoutes';
+import adminRoutes from './routes/adminRoutes';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
-        {
-            path: '/',
-            name: 'home',
-            component: HomeView
-        },
-        {
-            path: '/sign',
-            name: 'sign_login',
-            component: () => import('../views/SignPage/login.vue')
-        },
-        {
-            path: '/sign/register',
-            name: 'sign_register',
-            component: () => import('../views/SignPage/register.vue')
-        },
-        {
-            path: '/sign/forgot',
-            name: 'sign_forgot',
-            component: () => import('../views/SignPage/forgot.vue')
-        },
-        {
-            path: '/admin',
-            name: 'admin',
-            component: () => import('../views/AdminPage/index.vue')
-        }
+        ...homeRoutes,
+        ...signRoutes,
+        ...adminRoutes
     ]
-})
+});
 
-export default router
+export default router;

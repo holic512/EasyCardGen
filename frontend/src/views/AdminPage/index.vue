@@ -16,21 +16,6 @@ import {
   Back
 } from '@element-plus/icons-vue'
 
-// 用于控制页面展示
-import AllSetting from './AllSetting/index.vue'
-import UserMm from "./UserMm/UserMm/index.vue"
-import Dashboard from './Dashboard/index.vue'
-
-const index = ref("1")
-
-// Methods
-function handleOpen(key, keyPath) {
-  console.log(key, keyPath)
-}
-
-function handleClose(key, keyPath) {
-  console.log(key, keyPath)
-}
 
 // 用于缩放左导航
 const isCollapse = ref(true)
@@ -38,6 +23,11 @@ const isCollapse = ref(true)
 function toggleCollapse() {
   isCollapse.value = !isCollapse.value
   // 在这里可以添加其他你希望执行的逻辑
+}
+
+//用于跳转对应路由
+function routerIndex(index) {
+  console.log(index)
 }
 
 </script>
@@ -50,7 +40,7 @@ function toggleCollapse() {
         <!--滚动条-->
         <el-scrollbar>
           <el-menu default-active="1" style="height: 95vh;" :collapse="isCollapse">
-            <el-menu-item index="1" @click="index = '1'">
+            <el-menu-item index="1" @click="routerIndex('1')">
               <el-icon>
                 <icon-menu/>
               </el-icon>
@@ -64,8 +54,8 @@ function toggleCollapse() {
                 </el-icon>
                 <span>用户管理</span>
               </template>
-              <el-menu-item index="2-1" @click="index = '2-1'">所有用户</el-menu-item>
-              <el-menu-item index="2-3" @click="index = '2-3'">提现管理</el-menu-item>
+              <el-menu-item index="2-1" @click="routerIndex('2-1')">所有用户</el-menu-item>
+              <el-menu-item index="2-2" @click="routerIndex('2-2')">提现管理</el-menu-item>
             </el-sub-menu>
 
             <el-sub-menu index="3">
@@ -75,8 +65,8 @@ function toggleCollapse() {
                 </el-icon>
                 <span>店铺管理</span>
               </template>
-              <el-menu-item index="3-1" @click="index = '3-1'">所有店铺</el-menu-item>
-              <el-menu-item index="3-2" @click="index = '3-2'">权限管理</el-menu-item>
+              <el-menu-item index="3-1" @click="routerIndex('3-1')">所有店铺</el-menu-item>
+              <el-menu-item index="3-2" @click="routerIndex('3-2')">权限管理</el-menu-item>
             </el-sub-menu>
 
             <el-sub-menu index="4">
@@ -86,9 +76,9 @@ function toggleCollapse() {
                 </el-icon>
                 <span>商品管理</span>
               </template>
-              <el-menu-item index="4-1" @click="index = '4-1'">分类管理</el-menu-item>
-              <el-menu-item index="4-2" @click="index = '4-2'">商品管理</el-menu-item>
-              <el-menu-item index="4-3" @click="index = '4-3'">库存管理</el-menu-item>
+              <el-menu-item index="4-1" @click="routerIndex('4-1')">分类管理</el-menu-item>
+              <el-menu-item index="4-2" @click="routerIndex('4-2')">商品管理</el-menu-item>
+              <el-menu-item index="4-3" @click="routerIndex('4-3')">库存管理</el-menu-item>
             </el-sub-menu>
 
             <el-sub-menu index="5">
@@ -98,12 +88,12 @@ function toggleCollapse() {
                 </el-icon>
                 <span>订单管理</span>
               </template>
-              <el-menu-item index="5-1" @click="index = '5-1'">全部订单</el-menu-item>
-              <el-menu-item index="5-2" @click="index = '5-2'">售后管理</el-menu-item>
+              <el-menu-item index="5-1" @click="routerIndex('5-1')">全部订单</el-menu-item>
+              <el-menu-item index="5-2" @click="routerIndex('5-2')">售后管理</el-menu-item>
             </el-sub-menu>
 
 
-            <el-menu-item index="6" @click="index = '6'">
+            <el-menu-item index="6" @click="routerIndex('6')">
               <el-icon>
                 <Picture/>
               </el-icon>
@@ -117,8 +107,8 @@ function toggleCollapse() {
                 </el-icon>
                 <span>折扣管理</span>
               </template>
-              <el-menu-item index="6-1" @click="index = '7-1'">会员卡</el-menu-item>
-              <el-menu-item index="6-2" @click="index = '7-2'">折扣码</el-menu-item>
+              <el-menu-item index="6-1" @click="routerIndex('7-1')">会员卡</el-menu-item>
+              <el-menu-item index="6-2" @click="routerIndex('7-2')">折扣码</el-menu-item>
             </el-sub-menu>
 
 
@@ -129,25 +119,25 @@ function toggleCollapse() {
                 </el-icon>
                 <span>工单管理</span>
               </template>
-              <el-menu-item index="7-1" @click="index = '8-1'">商户工单</el-menu-item>
-              <el-menu-item index="7-2" @click="index = '8-2'">用户投诉</el-menu-item>
+              <el-menu-item index="7-1" @click="routerIndex('8-1')">商户工单</el-menu-item>
+              <el-menu-item index="7-2" @click="routerIndex('8-2')">用户投诉</el-menu-item>
             </el-sub-menu>
 
-            <el-menu-item index="9" @click="index = '8'">
+            <el-menu-item index="9" @click="routerIndex('9')">
               <el-icon>
                 <More/>
               </el-icon>
               <template #title>插件配置</template>
             </el-menu-item>
 
-            <el-menu-item index="10" @click="index = '10'">
+            <el-menu-item index="10" @click="routerIndex('10')">
               <el-icon>
                 <Setting/>
               </el-icon>
               <template #title>总站设置</template>
             </el-menu-item>
 
-            <el-menu-item index="11" @click="index = 11">
+            <el-menu-item index="11" @click="routerIndex('11')">
               <el-icon>
                 <Back/>
               </el-icon>
@@ -159,7 +149,7 @@ function toggleCollapse() {
 
       <!--缩放按钮-->
       <div style="background-color: rgb(244,244,244);">
-        <div class="Scalebar">
+        <div class="ScaleBar">
           <div @click="toggleCollapse">
             <div class="line"></div>
           </div>
@@ -169,13 +159,7 @@ function toggleCollapse() {
 
       <!--用于显示主页面的-->
       <el-main style="  background-color: rgb(244,244,244);">
-        <!--        导航栏-->
-        <Dashboard v-if="index === '1'"></Dashboard>
-
-        <UserMm v-else-if="index === '2-1'"></UserMm>
-
-
-        <AllSetting v-else-if="index === '10'"/>
+        <router-view></router-view>
       </el-main>
 
 
@@ -185,7 +169,7 @@ function toggleCollapse() {
 
 
 <style scoped>
-.Scalebar {
+.ScaleBar {
   margin-top: 40vh; /* 将元素顶部与视口垂直中心对齐 */
 
 }
