@@ -65,16 +65,19 @@ function toggleCollapse() {
                 <span>用户管理</span>
               </template>
               <el-menu-item index="2-1" @click="index = '2-1'">所有用户</el-menu-item>
-              <el-menu-item index="2-2" @click="index = '2-2'">权限管理</el-menu-item>
               <el-menu-item index="2-3" @click="index = '2-3'">提现管理</el-menu-item>
             </el-sub-menu>
 
-            <el-menu-item index="3" @click="index = '3'">
-              <el-icon>
-                <Shop/>
-              </el-icon>
-              <template #title>店铺管理</template>
-            </el-menu-item>
+            <el-sub-menu index="3">
+              <template #title>
+                <el-icon>
+                  <Shop/>
+                </el-icon>
+                <span>店铺管理</span>
+              </template>
+              <el-menu-item index="3-1" @click="index = '3-1'">所有店铺</el-menu-item>
+              <el-menu-item index="3-2" @click="index = '3-2'">权限管理</el-menu-item>
+            </el-sub-menu>
 
             <el-sub-menu index="4">
               <template #title>
@@ -90,7 +93,9 @@ function toggleCollapse() {
 
             <el-sub-menu index="5">
               <template #title>
-                <el-icon><Document /></el-icon>
+                <el-icon>
+                  <Document/>
+                </el-icon>
                 <span>订单管理</span>
               </template>
               <el-menu-item index="5-1" @click="index = '5-1'">全部订单</el-menu-item>
@@ -142,12 +147,12 @@ function toggleCollapse() {
               <template #title>总站设置</template>
             </el-menu-item>
 
-                        <el-menu-item index="11" @click="index = 11">
-                          <el-icon>
-                            <Back/>
-                          </el-icon>
-                          <template #title>退出登录</template>
-                        </el-menu-item>
+            <el-menu-item index="11" @click="index = 11">
+              <el-icon>
+                <Back/>
+              </el-icon>
+              <template #title>退出登录</template>
+            </el-menu-item>
           </el-menu>
         </el-scrollbar>
       </el-aside>
