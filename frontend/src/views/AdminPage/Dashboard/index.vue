@@ -1,4 +1,4 @@
-<!--用于仪表盘-->
+<!--用于管理员管理-仪表盘-->
 <script setup>
 import {onMounted} from 'vue';
 

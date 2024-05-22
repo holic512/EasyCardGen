@@ -8,11 +8,12 @@ import {
   More,
   Picture,
   Present,
-  Promotion,
+  Document,
   Setting,
   Shop,
   ShoppingBag,
-  User
+  User,
+  Back
 } from '@element-plus/icons-vue'
 
 // 用于控制页面展示
@@ -64,15 +65,15 @@ function toggleCollapse() {
                 <span>用户管理</span>
               </template>
               <el-menu-item index="2-1" @click="index = '2-1'">所有用户</el-menu-item>
-              <el-menu-item index="2-2" @click="index = 2-2">所有商户</el-menu-item>
-              <el-menu-item index="2-3" @click="index = 2-3">提现管理</el-menu-item>
+              <el-menu-item index="2-2" @click="index = '2-2'">权限管理</el-menu-item>
+              <el-menu-item index="2-3" @click="index = '2-3'">提现管理</el-menu-item>
             </el-sub-menu>
 
-            <el-menu-item index="3" @click="index = 3">
+            <el-menu-item index="3" @click="index = '3'">
               <el-icon>
                 <Shop/>
               </el-icon>
-              <template #title>所有店铺</template>
+              <template #title>店铺管理</template>
             </el-menu-item>
 
             <el-sub-menu index="4">
@@ -82,48 +83,56 @@ function toggleCollapse() {
                 </el-icon>
                 <span>商品管理</span>
               </template>
-              <el-menu-item index="4-1" @click="index = 4-1">所有分类</el-menu-item>
-              <el-menu-item index="4-2" @click="index = 4-2">所有商品</el-menu-item>
-              <el-menu-item index="4-3" @click="index = 4-3">所有卡密</el-menu-item>
+              <el-menu-item index="4-1" @click="index = '4-1'">分类管理</el-menu-item>
+              <el-menu-item index="4-2" @click="index = '4-2'">商品管理</el-menu-item>
+              <el-menu-item index="4-3" @click="index = '4-3'">库存管理</el-menu-item>
             </el-sub-menu>
 
-            <el-menu-item index="5" @click="index = 5">
+            <el-sub-menu index="5">
+              <template #title>
+                <el-icon><Document /></el-icon>
+                <span>订单管理</span>
+              </template>
+              <el-menu-item index="5-1" @click="index = '5-1'">全部订单</el-menu-item>
+              <el-menu-item index="5-2" @click="index = '5-2'">售后管理</el-menu-item>
+            </el-sub-menu>
+
+
+            <el-menu-item index="6" @click="index = '6'">
               <el-icon>
                 <Picture/>
               </el-icon>
               <template #title>广告管理</template>
             </el-menu-item>
 
-            <el-menu-item index="6" @click="index = 6">
-              <el-icon>
-                <Present/>
-              </el-icon>
-              <template #title>折扣优惠</template>
-            </el-menu-item>
-
             <el-sub-menu index="7">
+              <template #title>
+                <el-icon>
+                  <Present/>
+                </el-icon>
+                <span>折扣管理</span>
+              </template>
+              <el-menu-item index="6-1" @click="index = '7-1'">会员卡</el-menu-item>
+              <el-menu-item index="6-2" @click="index = '7-2'">折扣码</el-menu-item>
+            </el-sub-menu>
+
+
+            <el-sub-menu index="8">
               <template #title>
                 <el-icon>
                   <location/>
                 </el-icon>
                 <span>工单管理</span>
               </template>
-              <el-menu-item index="7-1" @click="index = 7-1">商户工单</el-menu-item>
-              <el-menu-item index="7-2" @click="index = 7-2">用户投诉</el-menu-item>
+              <el-menu-item index="7-1" @click="index = '8-1'">商户工单</el-menu-item>
+              <el-menu-item index="7-2" @click="index = '8-2'">用户投诉</el-menu-item>
             </el-sub-menu>
 
-            <el-menu-item index="8" @click="index = 8">
+            <el-menu-item index="9" @click="index = '8'">
               <el-icon>
                 <More/>
               </el-icon>
               <template #title>插件配置</template>
-            </el-menu-item>
-
-            <el-menu-item index="9" @click="index = 9">
-              <el-icon>
-                <Promotion/>
-              </el-icon>
-              <template #title>支付接口</template>
             </el-menu-item>
 
             <el-menu-item index="10" @click="index = '10'">
@@ -133,12 +142,12 @@ function toggleCollapse() {
               <template #title>总站设置</template>
             </el-menu-item>
 
-            <!--            <el-menu-item index="11" @click="index = 11">-->
-            <!--              <el-icon>-->
-            <!--                <Back/>-->
-            <!--              </el-icon>-->
-            <!--              <template #title>退出登录</template>-->
-            <!--            </el-menu-item>-->
+                        <el-menu-item index="11" @click="index = 11">
+                          <el-icon>
+                            <Back/>
+                          </el-icon>
+                          <template #title>退出登录</template>
+                        </el-menu-item>
           </el-menu>
         </el-scrollbar>
       </el-aside>
