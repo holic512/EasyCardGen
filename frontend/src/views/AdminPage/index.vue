@@ -1,13 +1,55 @@
+<script setup>
+import {ref} from 'vue'
+
+// 图标引用
+import {
+  Location,
+  Menu as IconMenu,
+  More,
+  Picture,
+  Present,
+  Promotion,
+  Setting,
+  Shop,
+  ShoppingBag,
+  User
+} from '@element-plus/icons-vue'
+
+// 用于控制页面展示
+import AllSetting from './AllSetting/index.vue'
+import MerchantMm from "./UserMm/MerchantMm/index.vue"
+import Dashboard from './Dashboard/index.vue'
+
+const index = ref("1")
+
+// Methods
+function handleOpen(key, keyPath) {
+  console.log(key, keyPath)
+}
+
+function handleClose(key, keyPath) {
+  console.log(key, keyPath)
+}
+
+// 用于缩放左导航
+const isCollapse = ref(true)
+
+function toggleCollapse() {
+  isCollapse.value = !isCollapse.value
+  // 在这里可以添加其他你希望执行的逻辑
+}
+
+</script>
 <template>
   <div class="common-layout">
     <el-container>
 
-      <el-aside width="auto" style="height: 95vh;">
+      <!--侧边栏-->
+      <el-aside width="auto" style="height: 100vh;">
         <!--滚动条-->
         <el-scrollbar>
-          <!--侧边栏-->
-          <el-menu default-active="2" style="height: 95vh;" :collapse="isCollapse">
-            <el-menu-item index="1" @click="index = 1">
+          <el-menu default-active="1" style="height: 95vh;" :collapse="isCollapse">
+            <el-menu-item index="1" @click="index = '1'">
               <el-icon>
                 <icon-menu/>
               </el-icon>
@@ -84,110 +126,52 @@
               <template #title>支付接口</template>
             </el-menu-item>
 
-            <el-menu-item index="10" @click="index = 10">
+            <el-menu-item index="10" @click="index = '10'">
               <el-icon>
                 <Setting/>
               </el-icon>
               <template #title>总站设置</template>
             </el-menu-item>
 
-            <el-menu-item index="11" @click="index = 11">
-              <el-icon>
-                <Back/>
-              </el-icon>
-              <template #title>退出登录</template>
-            </el-menu-item>
+            <!--            <el-menu-item index="11" @click="index = 11">-->
+            <!--              <el-icon>-->
+            <!--                <Back/>-->
+            <!--              </el-icon>-->
+            <!--              <template #title>退出登录</template>-->
+            <!--            </el-menu-item>-->
           </el-menu>
         </el-scrollbar>
-
       </el-aside>
 
-
       <!--缩放按钮-->
-      <div class="Scalebar">
-        <div @click="toggleCollapse">
-          <div class="line"></div>
+      <div style="background-color: rgb(244,244,244);">
+        <div class="Scalebar">
+          <div @click="toggleCollapse">
+            <div class="line"></div>
+          </div>
         </div>
       </div>
 
 
-      <el-main>
-        <div v-if="index === 1">123</div>
+      <!--用于显示主页面的-->
+      <el-main style="  background-color: rgb(244,244,244);">
+        <!--        导航栏-->
+        <Dashboard v-if="index === '1'"></Dashboard>
+
         <merchant-mm v-else-if="index === '2-1'"></merchant-mm>
-        <AllSetting v-else-if="index === 10"/>
+        <AllSetting v-else-if="index === '10'"/>
       </el-main>
+
+
     </el-container>
   </div>
 </template>
-<script>
-
-import AllSetting from './AllSetting/index.vue'
-import MerchantMm from "./UserMm/MerchantMm/index.vue";
-
-import {
-  Back,
-  Document,
-  Location,
-  Menu as IconMenu,
-  More,
-  Picture,
-  Present,
-  Promotion,
-  Setting,
-  Shop,
-  ShoppingBag,
-  User
-} from '@element-plus/icons-vue'
-
-export default {
-  data() {
-    return {
-      isCollapse: true,
-
-      index: "1",
-    };
-  },
-  components: {
-    Document,
-    Location,
-    IconMenu,
-    Setting,
-    User,
-    More,
-    Present,
-    ShoppingBag,
-    Shop,
-    Picture,
-    Promotion,
-    Back,
 
 
-    AllSetting,
-    MerchantMm
-
-  },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath)
-    },
-
-
-    toggleCollapse() {
-      this.isCollapse = !this.isCollapse;
-      // 在这里可以添加其他你希望执行的逻辑
-    }
-  }
-}
-</script>
-
-
-<style>
-
+<style scoped>
 .Scalebar {
   margin-top: 40vh; /* 将元素顶部与视口垂直中心对齐 */
+
 }
 
 .line {

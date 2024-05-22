@@ -1,28 +1,33 @@
-# frontend
+# 文本说明-fronted
 
-This template should help get you started developing with Vue 3 in Vite.
+主体框架采用 Vue-Vite
 
-## Recommended IDE Setup
+## 引用包
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+表格数据展示 - Apache ECharts
 
-## Customize configuration
+ui组件 - Element-plus
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+网络接口 - Axios
 
-## Project Setup
+路由管理 - Router
+
+状态管理 - Pinia
+
+
+## 环境构建
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 启动程序
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### 编译发布
 
 ```sh
 npm run build
