@@ -47,7 +47,34 @@ function routerIndex(index) {
       router.push('/admin/Withdraw')
       break
 
+    case '3-1':
+      //商店管理
+      router.push('/admin/storeMm')
+      break
+
+    case '3-2':
+      //权限管理
+      router.push('/admin/accessMm')
+      break
+
+    case '4-1':
+      //分类管理
+      router.push('/admin/categoryMm')
+      break
+
+    case '4-2':
+      // 商品管理
+      router.push('/admin/productMm')
+      break
+
+    case '4-3':
+      // 库存管理
+      router.push('/admin/inventoryMm')
+      break
+
+
   }
+
 
 }
 

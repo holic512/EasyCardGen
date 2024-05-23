@@ -1,4 +1,4 @@
-<!--用于管理员管理-用户管理-提现管理-->
+<!--用于商店管理-全部商店-->
 <script setup>
 
 </script>
@@ -6,10 +6,8 @@
 <template>
   <!--  topNav-->
   <div style="margin-bottom: 24px">
-    <el-text tag="b" size="large">用户管理-提现管理</el-text>
+    <el-text tag="b" size="large">商店管理-所有店铺</el-text>
   </div>
-
-
 </template>
 
 <style scoped>
