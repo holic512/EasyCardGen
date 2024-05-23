@@ -1,12 +1,11 @@
-<!--用于管理员管理-用户管理-提现管理-->
+<!--用于后台管理-折扣管理-会员卡-->
 <script setup>
 
 import topNavText from "@/views/AdminPage/components/topNavText.vue";
 </script>
 
 <template>
-
-  <topNavText :text="'用户管理-提现管理'"/>
+  <topNavText :text="'折扣管理-会员卡'"/>
 
 </template>
 

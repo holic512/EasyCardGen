@@ -72,6 +72,40 @@ function routerIndex(index) {
       router.push('/admin/inventoryMm')
       break
 
+    case '5-1':
+      // 订单管理
+      router.push('/admin/orderMm')
+      break
+
+    case '5-2':
+      // 售后管理
+      router.push('/admin/AftercareMm')
+      break
+
+    case '6':
+      // 广告管理
+      router.push('/admin/adMm')
+      break
+
+    case '7-1':
+      // 会员卡
+      router.push('/admin/membershipCard')
+      break
+
+    case '7-2':
+      // 折扣码
+      router.push('/admin/discountCode')
+      break
+
+    case '8-1':
+      // 商户工单
+      router.push('/admin/merchantTickets')
+      break
+
+    case '8-2':
+      // 用户投诉
+      router.push('/admin/userComplaints')
+      break
 
   }
 
@@ -136,7 +170,7 @@ function routerIndex(index) {
                 </el-icon>
                 <span>订单管理</span>
               </template>
-              <el-menu-item index="5-1" @click="routerIndex('5-1')">全部订单</el-menu-item>
+              <el-menu-item index="5-1" @click="routerIndex('5-1')">所有订单</el-menu-item>
               <el-menu-item index="5-2" @click="routerIndex('5-2')">售后管理</el-menu-item>
             </el-sub-menu>
 

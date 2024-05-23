@@ -5,6 +5,9 @@ import {onMounted} from 'vue';
 
 import card1 from './components/card1.vue';
 
+//topNav
+import topNavText from "@/views/AdminPage/components/topNavText.vue";
+
 //数据展示
 import * as echarts from 'echarts';
 // 店铺热度排行
@@ -57,10 +60,9 @@ onMounted(() => {
 
 <template>
   <div>
-    <!--  topNav-->
-    <div style="margin-bottom: 24px">
-      <el-text tag="b" size="large">仪表盘</el-text>
-    </div>
+
+    <topNavText :text="'仪表盘'"/>
+
     <el-scrollbar height="85vh">
       <el-space wrap style="width: 100%; margin-bottom: 24px" fill :fill-ratio="24" size="default">
         <card1/>

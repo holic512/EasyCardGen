@@ -1,13 +1,13 @@
-<!--用于商店管理-全部商店-->
+<!--用于商店管理-所有商店-->
 <script setup>
 
+import topNavText from "@/views/AdminPage/components/topNavText.vue";
 </script>
 
 <template>
-  <!--  topNav-->
-  <div style="margin-bottom: 24px">
-    <el-text tag="b" size="large">商店管理-所有店铺</el-text>
-  </div>
+
+  <topNavText :text="'商店管理-所有商店'"/>
+
 </template>
 
 <style scoped>

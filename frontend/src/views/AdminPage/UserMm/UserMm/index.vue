@@ -2,6 +2,7 @@
 <script setup>
 //添加用户页面
 import {ref} from "vue";
+import topNavText from "@/views/AdminPage/components/topNavText.vue";
 const dialogVisible = ref(false)
 function openAddForm() {
   dialogVisible.value = true
@@ -11,10 +12,8 @@ function openAddForm() {
 
 <template>
   <div class="sys">
-    <!--  topNav-->
-    <div style="margin-bottom: 24px">
-      <el-text tag="b" size="large">用户管理-所有用户</el-text>
-    </div>
+
+    <topNavText :text="'用户管理-所有用户'"/>
 
     <el-card>
       <div>

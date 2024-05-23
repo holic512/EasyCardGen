@@ -1,12 +1,11 @@
-<!--用于管理员管理-用户管理-提现管理-->
+<!--用于后台管理-订单管理-所有订单-->
 <script setup>
 
 import topNavText from "@/views/AdminPage/components/topNavText.vue";
 </script>
 
 <template>
-
-  <topNavText :text="'用户管理-提现管理'"/>
+  <topNavText :text="'订单管理-所有订单'"/>
 
 </template>
 
