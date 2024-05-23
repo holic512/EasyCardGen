@@ -26,8 +26,29 @@ function toggleCollapse() {
 }
 
 //用于跳转对应路由
+import {useRouter} from 'vue-router'
+
+const router = useRouter()
+
 function routerIndex(index) {
-  console.log(index)
+  switch (index) {
+    case '1':
+      // 仪表盘
+      router.push('/admin/')
+      break
+
+    case '2-1':
+      // 用户管理
+      router.push('/admin/userMm')
+      break
+
+    case '2-2':
+      //权限管理
+      router.push('/admin/Withdraw')
+      break
+
+  }
+
 }
 
 </script>

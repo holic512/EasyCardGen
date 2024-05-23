@@ -8,7 +8,7 @@ export default [
         children: [
             {
                 // 仪表盘
-                path: 'dashboard',
+                path: '',
                 name: 'dashboard',
                 component: () => import('../../views/AdminPage/Dashboard/index.vue')
             },
@@ -17,6 +17,12 @@ export default [
                 path: 'userMm',
                 name: 'userMm',
                 component: () => import('../../views/AdminPage/UserMm/UserMm/index.vue'),
+            },
+            {
+                // 提现管理
+                path: 'Withdraw',
+                name: 'Withdraw',
+                component: () => import('../../views/AdminPage/UserMm/WithdrawMm/index.vue'),
             }
         ]
     }
