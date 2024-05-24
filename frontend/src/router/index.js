@@ -10,7 +10,13 @@ const router = createRouter({
     routes: [
         ...homeRoutes,
         ...signRoutes,
-        ...adminRoutes
+        ...adminRoutes,
+        {
+            path: '/:pathMatch(.*)*',
+            name: '404',
+            component: () => import('../views/404.vue'),
+
+        },
     ]
 });
 
