@@ -104,6 +104,16 @@ export default [
                 component: () => import('../../views/AdminPage/TicketingMm/UserComplaints/index.vue'),
             },
 
+
+
+
+            {
+                // 设置页面
+                path: 'allSetting',
+                name: 'allSetting',
+                component: () => import('../../views/AdminPage/AllSetting/index.vue'),
+            }
+
         ]
     }
 ];

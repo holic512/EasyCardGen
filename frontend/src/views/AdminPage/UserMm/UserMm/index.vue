@@ -3,10 +3,23 @@
 //添加用户页面
 import {ref} from "vue";
 import topNavText from "@/views/AdminPage/components/topNavText.vue";
+
 const dialogVisible = ref(false)
+
 function openAddForm() {
   dialogVisible.value = true
 }
+
+const tableData = [
+  {
+    ID: 1,
+    username: '123',
+    phone: '123',
+    email: '123',
+    user_type: '123',
+    account_status: '123'
+  }
+]
 
 </script>
 
