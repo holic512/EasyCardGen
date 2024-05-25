@@ -13,12 +13,20 @@ function openAddForm() {
 const tableData = [
   {
     ID: 1,
-    username: '123',
-    phone: '123',
-    email: '123',
-    user_type: '123',
-    account_status: '123'
-  }
+    username: 'name1',
+    phone: '12345678978',
+    email: '123123112@qq.com',
+    user_type: '用户',
+    account_status: '正常'
+  },
+  {
+    ID: 2,
+    username: 'name2',
+    phone: '12345678978',
+    email: '123123112@qq.com',
+    user_type: '商户',
+    account_status: '正常'
+  },
 ]
 
 </script>
@@ -33,10 +41,11 @@ const tableData = [
         <el-table
             ref="multipleTableRef"
             :data="tableData"
+            stripe
             :table-layout="tableLayout"
             style="width: 100%"
         >
-          <el-table-column prop="ID" label="ID"/>
+          <el-table-column prop="ID" label="ID" width="55"/>
           <el-table-column prop="username" label="用户名"/>
           <el-table-column prop="phone" label="电话"/>
           <el-table-column prop="email" label="邮箱"/>
