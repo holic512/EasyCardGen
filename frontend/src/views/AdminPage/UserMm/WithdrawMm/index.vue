@@ -5,7 +5,7 @@ import topNavText from "@/views/AdminPage/components/topNavText.vue";
 
 
 import {ref} from "vue";
-import type {TabsPaneContext} from "element-plus";
+import {ElTable, TabsPaneContext} from "element-plus";
 
 const activeName = ref('first')
 
@@ -13,23 +13,84 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event);
 };
 
+
+//输入框测试
+const input = ref()
+
+interface info {
+  ID: string
+  storeId: string
+  withdrawalMethod: string
+  withdrawalAmount: string
+  status: string
+  initiatedTime: string
+  remarks: string
+}
+
+const tableData = ref<info[]>(
+    [
+      {
+        ID: "123",
+        storeId: "string",
+        withdrawalMethod: "string",
+        withdrawalAmount: "string",
+        status: "string",
+        initiatedTime: "123",
+        remarks: "string",
+      }
+    ]
+);
+
+const multipleTableRef = ref<InstanceType<typeof ElTable>>()
+const multipleSelection = ref<info[]>([])
+
+const handleSelectionChange = (val: info[]) => {
+  multipleSelection.value = val
+}
+
 </script>
 
 <template>
 
   <topNavText :text="'用户管理-提现管理'"/>
   <el-card>
-   选择栏 提现id 商户名称 商店名称 提现方式 备注  处理 （完成 拒绝） 批量处理 （批量接受 批量拒绝）
+
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
       <el-tab-pane label="未处理" name="first">
 
-        <el-table :data="tableData" stripe style="width: 100%">
+        <div style="margin-bottom: 10px">
+          <el-input v-model="input" style="width: 240px;margin-right: 15px" placeholder="请输入搜索的提现id" clearable/>
+          <el-button type="primary">搜索</el-button>
+          <el-button type="primary">批量同意</el-button>
+          <el-button type="primary">批量拒绝</el-button>
+        </div>
 
-          <el-table-column prop="id" label="Date" width="180" />
 
-          <el-table-column prop="name" label="Name" width="180" />
+        <el-table
+            :data="tableData"
+            stripe
+            style="width: 100%"
+            @selection-change="handleSelectionChange"
+        >
 
-          <el-table-column prop="address" label="Address" />
+          <el-table-column type="selection" width="55"/>
+
+          <el-table-column prop="ID" label="提现id"/>
+
+          <el-table-column prop="storeId" label="商户id"/>
+
+          <el-table-column prop="withdrawalMethod" label="提现方式"/>
+
+          <el-table-column prop="withdrawalAmount" label="提现金额"/>
+
+          <el-table-column prop="status" label="状态"/>
+
+          <el-table-column prop="initiatedTime" label="发起时间"/>
+
+          <el-table-column prop="remarks" label="备注"/>
+
+          <!--          <el-table-column prop="address" label="操作"/>-->
+
 
         </el-table>
 

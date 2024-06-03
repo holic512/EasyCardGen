@@ -25,7 +25,7 @@ const tableData = [
     phone: '12345678978',
     email: '123123112@qq.com',
     user_type: '商户',
-    account_status: '正常'
+    account_status: '封禁'
   },
 ]
 
@@ -42,14 +42,24 @@ const tableData = [
             ref="multipleTableRef"
             :data="tableData"
             stripe
-            :table-layout="tableLayout"
             style="width: 100%"
         >
           <el-table-column prop="ID" label="ID" width="55"/>
           <el-table-column prop="username" label="用户名"/>
           <el-table-column prop="phone" label="电话"/>
           <el-table-column prop="email" label="邮箱"/>
-          <el-table-column prop="user_type" label="权限"/>
+          <el-table-column prop="user_type" label="权限">
+            <template #default="scope">
+              <el-tag
+                  :type="scope.row.user_type === '商户' ? '' : 'success'"
+                  disable-transitions
+              >{{ scope.row.user_type }}
+              </el-tag
+              >
+            </template>
+          </el-table-column>
+
+
           <el-table-column prop="account_status" label="状态"/>
           <el-table-column fixed="right">
             <template #header>
