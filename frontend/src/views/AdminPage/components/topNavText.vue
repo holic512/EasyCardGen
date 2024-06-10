@@ -6,7 +6,7 @@ export default {
 
 <template>
   <!--  topNav-->
-  <div style="margin-bottom: 24px">
+  <div style="margin-bottom: 18px">
     <el-text tag="b" size="large">后台管理-{{ text }}</el-text>
   </div>
 </template>

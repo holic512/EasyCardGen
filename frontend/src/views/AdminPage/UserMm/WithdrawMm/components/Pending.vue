@@ -57,6 +57,7 @@ const handleSelectionChange = (val: info[]) => {
 
 //用来处理 状态 的 tag标签type
 function getTagType(message: string) {
+
   switch (message) {
     case '已完成':
       return 'success'
