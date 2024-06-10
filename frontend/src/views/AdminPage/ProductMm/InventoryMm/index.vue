@@ -6,6 +6,10 @@ import topNavText from "@/views/AdminPage/components/topNavText.vue";
 
 <template>
   <topNavText :text="'商品管理-库存管理'"/>
+
+  <el-card>
+
+  </el-card>
 </template>
 
 <style scoped>
