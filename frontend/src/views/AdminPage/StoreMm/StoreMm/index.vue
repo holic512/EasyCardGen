@@ -5,6 +5,9 @@ import topNavText from "@/views/AdminPage/components/topNavText.vue";
 import {ref} from "vue";
 import {ElTable} from "element-plus";
 
+// statusTag 用于 状态组件
+import statusTag from "@/views/AdminPage/components/statusTag.vue";
+
 //todo 规定商店数据类型
 interface store_info {
   store_id: string,
@@ -23,7 +26,7 @@ const store_info = ref<store_info[]>([
         store_id: '0001',
         user_id: '0001',
         store_name: '开心发卡',
-        store_type: '1',
+        store_type: '基础权限',
         store_state: '正常',
         store_product_count: '',
         store_balance: '',
@@ -33,8 +36,8 @@ const store_info = ref<store_info[]>([
         store_id: '0001',
         user_id: '0001',
         store_name: '开心发卡',
-        store_type: '1',
-        store_state: '关闭',
+        store_type: '中级权限',
+        store_state: '停用',
         store_product_count: '',
         store_balance: '',
         store_rating: '',
@@ -43,7 +46,7 @@ const store_info = ref<store_info[]>([
         store_id: '0001',
         user_id: '0001',
         store_name: '开心发卡',
-        store_type: '1',
+        store_type: '高级权限',
         store_state: '封禁',
         store_product_count: '100',
         store_balance: '34.5',
@@ -63,23 +66,6 @@ const multipleSelection = ref<store_info[]>([])
 
 const handleSelectionChange = (val: store_info[]) => {
   multipleSelection.value = val
-}
-
-
-// 处理tag
-function getTagType(message: string) {
-
-  switch (message) {
-    case '正常':
-      return 'success'
-    case '关闭':
-      return ''
-    case '封禁':
-      return 'danger'
-    default:
-      return
-  }
-
 }
 </script>
 
@@ -105,9 +91,9 @@ function getTagType(message: string) {
 
       <el-table-column type="selection" width="55"/>
 
-      <el-table-column prop="store_id" label="商店id"/>
+      <el-table-column prop="store_id" label="商店ID"/>
 
-      <el-table-column prop="user_id" label="用户id"/>
+      <el-table-column prop="user_id" label="用户ID"/>
 
       <el-table-column prop="store_name" label="商店名称"/>
 
@@ -116,12 +102,7 @@ function getTagType(message: string) {
       <el-table-column prop="store_state" label="状态">
 
         <template #default="scope">
-          <el-tag
-              :type="getTagType(scope.row.store_state)"
-              disable-transitions
-          >
-            {{ scope.row.store_state }}
-          </el-tag>
+          <statusTag :message="scope.row.store_state"/>
         </template>
 
       </el-table-column>

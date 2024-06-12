@@ -18,7 +18,7 @@ interface discountCodes {
 // discountCodesTable 用于 折扣码表格 数据样板
 const discountCodesTable = ref<discountCodes[]>([
   {
-    discount_id: 'string',
+    discount_id: '0001',
     code: 'string',
     store_id: 'string',
     duration_mode: '限时',
@@ -26,7 +26,7 @@ const discountCodesTable = ref<discountCodes[]>([
     status: '正常',
   },
   {
-    discount_id: 'string',
+    discount_id: '0002',
     code: 'string',
     store_id: 'string',
     duration_mode: '永久',
@@ -34,13 +34,14 @@ const discountCodesTable = ref<discountCodes[]>([
     status: '停用',
   },
   {
-    discount_id: 'string',
+    discount_id: '0003',
     code: 'string',
     store_id: 'string',
     duration_mode: '限时',
     stock: '5',
     status: '禁用',
-  }
+  },
+
 ])
 
 // input 用于存储 搜索栏 中的信息
@@ -54,6 +55,9 @@ const handleSelectionChange = (val: discountCodes[]) => {
   multipleSelection.value = val
 }
 
+
+// statusTag 用于 状态组件
+import statusTag from "@/views/AdminPage/components/statusTag.vue";
 
 </script>
 
@@ -88,7 +92,11 @@ const handleSelectionChange = (val: discountCodes[]) => {
 
       <el-table-column prop="stock" label="库存"/>
 
-      <el-table-column prop="status" label="状态"/>
+      <el-table-column prop="status" label="状态">
+        <template #default="scope">
+          <statusTag :message="scope.row.status" />
+        </template>
+      </el-table-column>
 
 
       <el-table-column label="更多操作">

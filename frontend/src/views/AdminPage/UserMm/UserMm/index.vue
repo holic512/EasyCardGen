@@ -1,8 +1,12 @@
 <!--用于管理员管理-用户管理-所有用户-->
-<script setup>
+<script setup lang="ts">
+
 //添加用户页面
 import {ref} from "vue";
 import topNavText from "@/views/AdminPage/components/topNavText.vue";
+
+
+import statusTag from "@/views/AdminPage/components/statusTag.vue";
 
 const dialogVisible = ref(false)
 
@@ -29,7 +33,6 @@ const tableData = [
     account_status: '封禁'
   },
 ]
-
 </script>
 
 <template>
@@ -38,18 +41,27 @@ const tableData = [
     <topNavText :text="'用户管理-所有用户'"/>
 
     <el-card>
+      <div style="margin-bottom: 10px">
+        <el-input v-model="input" style="width: 240px;margin-right: 15px" placeholder="请输入搜索的用户ID" clearable/>
+        <el-button type="primary">搜索</el-button>
+        <el-button type="success">添加用户</el-button>
+        <el-button type="danger">批量封禁</el-button>
+      </div>
+
       <div>
         <el-table
             ref="multipleTableRef"
             :data="tableData"
             stripe
             style="width: 100%"
+
         >
           <el-table-column prop="ID" label="ID" width="55"/>
-          <el-table-column prop="username" label="用户名"/>
+          <el-table-column prop="username" label="用户名" width="120"/>
+
           <el-table-column prop="phone" label="电话"/>
           <el-table-column prop="email" label="邮箱"/>
-          <el-table-column prop="user_type" label="权限">
+          <el-table-column prop="user_type" label="权限" width="120">
             <template #default="scope">
               <el-tag
                   :type="scope.row.user_type === '商户' ? '' : 'success'"
@@ -61,17 +73,18 @@ const tableData = [
           </el-table-column>
 
 
-          <el-table-column prop="account_status" label="状态"/>
-          <el-table-column fixed="right">
-            <template #header>
-              <!--添加用户-->
-
-              <el-button color="#626aef" @click="openAddForm">添加用户</el-button>
-
+          <el-table-column prop="account_status" label="状态" width="120">
+            <template #default="scope">
+              <statusTag :message="scope.row.account_status"/>
             </template>
+          </el-table-column>
+
+
+          <el-table-column fixed="right" label="更多操作">
             <template #default="scope">
               <el-button size="small" @click="handleEdit(scope.row)">编辑</el-button>
-              <el-button size="small" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+              <el-button size="small" type="primary" @click="handleEdit(scope.row)">解封</el-button>
+              <el-button size="small" type="danger" @click="handleDelete(scope.row)">封禁</el-button>
             </template>
           </el-table-column>
         </el-table>

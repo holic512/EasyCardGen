@@ -4,6 +4,9 @@ import topNavText from "@/views/AdminPage/components/topNavText.vue";
 import {ref} from "vue";
 import {ElTable} from "element-plus";
 
+// statusTag 用于 状态组件
+import statusTag from "@/views/AdminPage/components/statusTag.vue";
+
 //todo 用于 处理分类信息的 约束
 interface categories_info {
   category_id: string;
@@ -18,27 +21,27 @@ interface categories_info {
 const categories_table = ref<categories_info[]>([
   {
     category_id: '0001',
-    store_id: 'string',
+    store_id: '0001',
     state: '正常',
-    category_name: 'string',
-    weight: 'string',
-    created_at: 'string',
+    category_name: '食品',
+    weight: '0',
+    created_at: '2024-3-25',
   },
   {
     category_id: '0002',
-    store_id: 'string',
+    store_id: '0002',
     state: '停用',
-    category_name: 'string',
-    weight: 'string',
-    created_at: 'string',
+    category_name: '手机卡',
+    weight: '1',
+    created_at: '2024-3-25',
   },
   {
     category_id: '0003',
-    store_id: 'string',
+    store_id: '0003',
     state: '封禁',
-    category_name: 'string',
-    weight: 'string',
-    created_at: 'string',
+    category_name: '化妆品',
+    weight: '2',
+    created_at: '2024-3-25',
   },
 ]);
 
@@ -106,12 +109,9 @@ function getTagType(message: string) {
       <el-table-column prop="state" label="状态">
 
         <template #default="scope">
-          <el-tag
-              :type="getTagType(scope.row.state)"
-              disable-transitions
-          >
-            {{ scope.row.state }}
-          </el-tag>
+
+          <statusTag :message="scope.row.state" />
+
         </template>
 
       </el-table-column>

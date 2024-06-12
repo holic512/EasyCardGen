@@ -5,6 +5,9 @@ import topNavText from "@/views/AdminPage/components/topNavText.vue";
 import {ref} from "vue";
 import {ElTable} from "element-plus";
 
+// 引用 状态 tag
+import StatusTag from './components/StatusTag.vue';
+
 //用用于权限管理约束
 interface access_info {
   access_id: string,
@@ -59,11 +62,6 @@ const access_table = ref<access_info[]>([
   },
 
 ])
-
-
-// 引用tag
-import StatusTag from './components/StatusTag.vue';
-
 </script>
 
 <template>
@@ -71,25 +69,36 @@ import StatusTag from './components/StatusTag.vue';
   <topNavText :text="'商店管理-权限管理'"/>
 
   <el-card>
+
+    <!--上操作栏-->
+    <div style="margin-bottom: 10px">
+
+      <el-input v-model="input" style="width: 240px;margin-right: 15px" placeholder="请输入搜索的提现id" clearable/>
+      <el-button type="primary">搜索</el-button>
+      <el-button type="success">创建权限</el-button>
+      <el-button type="danger">批量停用</el-button>
+
+    </div>
+
     <el-table
         :data="access_table"
         stripe
         style="width: 100%"
     >
 
-      <el-table-column prop="access_id" label="权限id"/>
+      <el-table-column prop="access_id" label="权限ID"/>
 
       <el-table-column prop="access_name" label="权限名称"/>
 
-      <el-table-column prop="max_class_count" label="最大分类数"/>
+      <el-table-column prop="max_class_count" label="分类数" width="80"/>
 
-      <el-table-column prop="max_product_count" label="最大商品数"/>
+      <el-table-column prop="max_product_count" label="商品数" width="80"/>
 
-      <el-table-column prop="recommendation_weight" label="推荐位权重"/>
+      <el-table-column prop="recommendation_weight" label="权重" width="55"/>
 
-      <el-table-column prop="withdrawal_fee" label="提现手续费"/>
+      <el-table-column prop="withdrawal_fee" label="提现费" width="80"/>
 
-      <el-table-column prop="discount_code" label="折扣码">
+      <el-table-column prop="discount_code" label="折扣码" width="80">
 
         <template #default="scope">
           <StatusTag :value="scope.row.discount_code"/>
@@ -97,19 +106,19 @@ import StatusTag from './components/StatusTag.vue';
 
       </el-table-column>
 
-      <el-table-column prop="membership_card" label="会员卡">
+      <el-table-column prop="membership_card" label="会员卡" width="80">
         <template #default="scope">
           <StatusTag :value="scope.row.membership_card"/>
         </template>
       </el-table-column>
 
-      <el-table-column prop="keyword_assistant_reply" label="关键词助手">
+      <el-table-column prop="keyword_assistant_reply" label="自动回复" width="80">
         <template #default="scope">
           <StatusTag :value="scope.row.keyword_assistant_reply"/>
         </template>
 
       </el-table-column>
-      <el-table-column prop="exclusive_platform_customer_service" label="专属平台客服">
+      <el-table-column prop="exclusive_platform_customer_service" label="平台客服" width="80">
 
         <template #default="scope">
           <StatusTag :value="scope.row.exclusive_platform_customer_service"/>
@@ -117,7 +126,12 @@ import StatusTag from './components/StatusTag.vue';
       </el-table-column>
 
       <el-table-column label="更多操作">
-        封禁 编辑
+        <el-button size="small">
+          停用
+        </el-button>
+        <el-button size="small">
+          编辑
+        </el-button>
       </el-table-column>
 
 

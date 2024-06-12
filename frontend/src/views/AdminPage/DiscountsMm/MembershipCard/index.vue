@@ -22,7 +22,7 @@ const memberCardsTable = ref<memberCards[]>([
     user_id:'0001',
     store_id:'0001',
     balance:'100.5',
-    issue_date:'2023-5',
+    issue_date:'2023-5-21',
     status:'正常',
   },
 
@@ -39,7 +39,8 @@ const handleSelectionChange = (val: memberCards[]) => {
   multipleSelection.value = val
 }
 
-
+// statusTag 用于 状态组件
+import statusTag from "@/views/AdminPage/components/statusTag.vue";
 
 </script>
 
@@ -73,7 +74,11 @@ const handleSelectionChange = (val: memberCards[]) => {
 
       <el-table-column prop="issue_date" label="开卡时间"/>
 
-      <el-table-column prop="status" label="状态"/>
+      <el-table-column prop="status" label="状态">
+        <template #default="scope">
+          <statusTag :message="scope.row.status" />
+        </template>
+      </el-table-column>
 
       <el-table-column label="更多操作">
         <el-button type="danger" size="small">

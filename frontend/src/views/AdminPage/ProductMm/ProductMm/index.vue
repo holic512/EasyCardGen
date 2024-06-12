@@ -144,7 +144,7 @@ function getTagType(message: string) {
 
       </el-table-column>
 
-      <el-table-column prop="weight" label="权重"/>
+      <el-table-column prop="weight" label="权重" width="55"/>
 
 
       <el-table-column label="更多信息">
