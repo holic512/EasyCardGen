@@ -1,20 +1,38 @@
 package main
 
 import (
-	"easyCardGen/router"
-	"github.com/gin-gonic/gin"
+	"easyCardGen/db"
+	"easyCardGen/model"
 )
-import "easyCardGen/config"
 
 func main() {
 
-	//	程序入口
+	//初始化数据库
+	db.Init()
 
-	server := gin.Default()
-	router.SetupRoutes(server)
-	err := server.Run(config.ServerAddress)
-	if err != nil {
-		return
+	user := model.User{
+		Username: "123",
+		Password: "123",
+		Email:    "123",
+		Phone:    "123",
+		State:    "1223",
 	}
+
+	sql := db.GetDB()
+	sql.Create(&user)
+
+	println(user.ID)
+
+	//// 初始化 gin
+	//server := gin.Default()
+	//
+	////初始化路由
+	//router.SetupRoutes(server)
+	//
+	////启动服务
+	//err := server.Run(config.ServerAddress)
+	//if err != nil {
+	//	return
+	//}
 
 }
