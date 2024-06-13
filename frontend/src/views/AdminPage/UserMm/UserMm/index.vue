@@ -7,12 +7,12 @@ import topNavText from "@/views/AdminPage/components/topNavText.vue";
 
 
 import statusTag from "@/views/AdminPage/components/statusTag.vue";
+import AddUser from "@/views/AdminPage/UserMm/UserMm/components/addUser.vue";
 
+// 引入 用户添加 页面
+import addUser from "./components/addUser.vue"
 const dialogVisible = ref(false)
 
-function openAddForm() {
-  dialogVisible.value = true
-}
 
 //todo 当 user_type 为用户 或者商户的 时候  tag有不同显示
 const tableData = [
@@ -33,6 +33,10 @@ const tableData = [
     account_status: '封禁'
   },
 ]
+
+const addUserVisible = ref(false)
+
+
 </script>
 
 <template>
@@ -44,7 +48,7 @@ const tableData = [
       <div style="margin-bottom: 10px">
         <el-input v-model="input" style="width: 240px;margin-right: 15px" placeholder="请输入搜索的用户ID" clearable/>
         <el-button type="primary">搜索</el-button>
-        <el-button type="success">添加用户</el-button>
+        <el-button type="success" @click="addUserVisible = true">添加用户</el-button>
         <el-button type="danger">批量封禁</el-button>
       </div>
 
@@ -104,6 +108,8 @@ const tableData = [
 
   </div>
 
+
+  <addUser v-model="addUserVisible"/>
 
 </template>
 
