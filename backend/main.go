@@ -1,38 +1,40 @@
 package main
 
 import (
-	"easyCardGen/db"
-	"easyCardGen/model"
+	"easyCardGen/config"
+	"easyCardGen/router"
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
+	"time"
 )
 
 func main() {
 
 	//初始化数据库
-	db.Init()
+	config.Init()
 
-	user := model.User{
-		Username: "123",
-		Password: "123",
-		Email:    "123",
-		Phone:    "123",
-		State:    "1223",
+	// 初始化 gin
+	server := gin.Default()
+
+	// 使用自定义配置的 CORS 中间件
+	core := cors.Config{
+		AllowOrigins:     []string{"http://localhost:5173"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length", "Content-Type"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
 	}
 
-	sql := db.GetDB()
-	sql.Create(&user)
+	server.Use(cors.New(core))
 
-	println(user.ID)
+	//初始化路由
+	router.SetupRoutes(server)
 
-	//// 初始化 gin
-	//server := gin.Default()
-	//
-	////初始化路由
-	//router.SetupRoutes(server)
-	//
-	////启动服务
-	//err := server.Run(config.ServerAddress)
-	//if err != nil {
-	//	return
-	//}
+	//启动服务
+	err := server.Run(config.ServerAddress)
+	if err != nil {
+		return
+	}
 
 }

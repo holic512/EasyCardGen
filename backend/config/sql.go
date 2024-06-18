@@ -1,4 +1,4 @@
-package db
+package config
 
 import (
 	"fmt"
@@ -39,7 +39,7 @@ func GetDB() *gorm.DB {
 func migrate() {
 	// 这里进行自动迁移
 
-	//user
+	//users
 	db.AutoMigrate(model.User{})
 
 }

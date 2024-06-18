@@ -1,5 +1,5 @@
 package config
 
 var (
-	ServerAddress = "0.0.0.0:8080"
+	ServerAddress = "127.0.0.1:8080"
 )
