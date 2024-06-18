@@ -111,11 +111,13 @@ const rules = reactive<FormRules>({
 
 // 用于实现 邮箱补全
 const restaurants = [
-  {value: '@email.com'},
   {value: '@qq.com'},
   {value: '@163.com'},
   {value: '@126.com'},
-  {value: '@gogo.com'}
+  {value: '@139.com'},
+  {value: '@sina.com'},
+  {value: '@gmail.com'},
+
 ];
 
 const fetchSuggestions = (queryString: string, cb: any) => {
