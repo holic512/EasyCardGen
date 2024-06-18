@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import {reactive, ref} from "vue";
-import {FormInstance, FormRules} from "element-plus";
+import {ElMessage, FormInstance, FormRules} from "element-plus";
 import axios from "axios";
 
 //addUserVisible 用于 控制添加表单 显示
@@ -174,14 +174,12 @@ const typeOptions = [
 
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) {
-    console.log('1');
     return;
   }
 
   // 检测表单规范
   formEl.validate((valid) => {
     if (valid) {
-      console.log('2');
       // 执行axios
       axios.post('http://localhost:8080/api/admin/addUser', {
         Username: userForm.value.username,
@@ -192,17 +190,36 @@ const submitForm = (formEl: FormInstance | undefined) => {
         State: userForm.value.state,
       })
           .then(response => {
-            console.log(response.data);
+            if (response.status === 200) {
+              ElMessage({
+                message: '添加用户成功!',
+                type: 'success',
+              })
+            }
           })
           .catch(error => {
-            console.error(error);
+            let errorMessage;
+            switch (error.response.data.error_code) {
+              case 'USERNAME_DUPLICATE_ERROR':
+                errorMessage = '用户名已存在';
+                break;
+              case 'EMAIL_DUPLICATE_ERROR':
+                errorMessage = '邮箱已存在';
+                break;
+              case 'PHONE_DUPLICATE_ERROR':
+                errorMessage = '电话已存在';
+                break;
+              default:
+                errorMessage = '添加用户失败';
+            }
             // 处理登录失败的逻辑
+            ElMessage({
+              message: errorMessage,
+              type: 'warning',
+            })
           });
     } else {
-      console.log('3');
-      // 可以考虑在这里显示错误信息给用户
-      // 例如：使用 Element Plus 的 Message 组件
-      // ElementPlus.ElMessage.error('表单验证失败！');
+      ElMessage.error('表单验证失败！');
     }
   });
 }
