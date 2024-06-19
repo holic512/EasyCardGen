@@ -7,12 +7,13 @@ import topNavText from "@/views/AdminPage/components/topNavText.vue";
 
 
 import statusTag from "@/views/AdminPage/components/statusTag.vue";
-import AddUser from "@/views/AdminPage/UserMm/UserMm/components/addUser.vue";
+
 
 // 引入 用户添加 页面
 import addUser from "./components/addUser.vue"
-const dialogVisible = ref(false)
+const addUserVisible = ref(false)
 
+// 获取 用户表格信息
 
 //todo 当 user_type 为用户 或者商户的 时候  tag有不同显示
 const tableData = [
@@ -34,7 +35,7 @@ const tableData = [
   },
 ]
 
-const addUserVisible = ref(false)
+
 
 
 </script>
