@@ -2,7 +2,7 @@
 <script setup lang="ts">
 
 //添加用户页面
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import topNavText from "@/views/AdminPage/components/topNavText.vue";
 
 
@@ -11,9 +11,15 @@ import statusTag from "@/views/AdminPage/components/statusTag.vue";
 
 // 引入 用户添加 页面
 import addUser from "./components/addUser.vue"
+// 分页组件
+import Pagination from "@/views/AdminPage/components/pagination.vue";
+
+// addUserVisible 控制 添加页面显示
 const addUserVisible = ref(false)
 
+
 // 获取 用户表格信息
+
 
 //todo 当 user_type 为用户 或者商户的 时候  tag有不同显示
 const tableData = [
@@ -35,7 +41,15 @@ const tableData = [
   },
 ]
 
+// 分页管理
 
+const currentPage = ref(1)
+const itemCount = ref(100)
+
+// 监听 currentPage 的变化
+watch(currentPage, (newValue) => {
+  console.log('Current Page changed from', 'to', newValue);
+});
 
 
 </script>
@@ -96,15 +110,8 @@ const tableData = [
       </div>
 
       <!-- 页数管理 -->
-      <div class="endPagination">
-        <el-pagination
-            background
-            v-model="currentPage"
-            @current-change="getNowPageData"
-            layout="prev, pager, next"
-            :total="tablepage * 10"
-        />
-      </div>
+
+      <Pagination v-model:currentPage="currentPage" v-model:itemCount="itemCount"/>
     </el-card>
 
   </div>
@@ -119,11 +126,5 @@ const tableData = [
   height: auto;
 }
 
-.endPagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-  background-color: white;
-}
+
 </style>

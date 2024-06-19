@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 
 // defineProps 用于 接受 信息
 const props = defineProps<{
@@ -6,7 +6,7 @@ const props = defineProps<{
 }>()
 
 
-function getStatusTagType(message: string) {
+function getStatusTagType(message?: String) {
   switch (message) {
     case '正常':
       return 'success'
