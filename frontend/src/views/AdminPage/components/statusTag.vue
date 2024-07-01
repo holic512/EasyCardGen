@@ -1,38 +1,35 @@
 <script setup lang="ts">
+import { defineProps, computed, ref } from 'vue';
 
-// defineProps 用于 接受 信息
 const props = defineProps<{
   message?: String,
 }>()
 
+// 使用 ref 定义状态
+const message1 = ref("");
 
-function getStatusTagType(message?: String) {
-  switch (message) {
+// 计算属性来获取标签类型
+const tagType = computed(() => {
+  switch (props.message) {
     case '正常':
-      return 'success'
     case 'active':
-      return 'success'
+      message1.value = '正常';
+      return 'success';
     case '停用':
-      return ''
+      return '';
     case '封禁':
-      return 'danger'
-
+      return 'danger';
     default:
-      return
-
+      return '';
   }
-
-
-}
+});
 </script>
 
 <template>
-
   <el-tag
-      :type="getStatusTagType(props.message)"
+      :type="tagType"
       disable-transitions
   >
-    {{ props.message }}
-
+    {{ message1 }}
   </el-tag>
 </template>

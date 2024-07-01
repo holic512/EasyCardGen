@@ -1,8 +1,9 @@
-package admin
+package service_admin
 
 import (
 	"easyCardGen/model"
-	"easyCardGen/repository/users"
+	repository_users "easyCardGen/repository/users"
+
 	"easyCardGen/utils"
 	"errors"
 )
@@ -22,7 +23,8 @@ func AddUser(user model.User) error {
 	}
 
 	// 检测 用户名密码重复
-	err := users.FindUser(user)
+
+	err := repository_users.FindUser(user)
 	if err != nil {
 		return err
 	}
@@ -34,7 +36,7 @@ func AddUser(user model.User) error {
 
 	user.Password = hashedPassword
 
-	err = users.CreateUser(user)
+	err = repository_users.CreateUser(user)
 	if err != nil {
 		return errors.New("user表插入数据库错误")
 	}
@@ -43,12 +45,12 @@ func AddUser(user model.User) error {
 }
 
 func GetUserCount() (int64, error) {
-	count, err := users.GetUserCount()
+	count, err := repository_users.GetUserCount()
 	return count, err
 }
 
 func GetUsersInfo(currentPage int64, pageSize int64) ([]model.User, error) {
-	usersInfo, err := users.GetUserInfo(currentPage, pageSize)
+	usersInfo, err := repository_users.GetUserInfo(currentPage, pageSize)
 	if err != nil {
 		return nil, err
 	}

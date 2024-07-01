@@ -1,4 +1,4 @@
-package users
+package repository_users
 
 import (
 	"easyCardGen/config"
