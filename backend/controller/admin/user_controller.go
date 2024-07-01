@@ -4,10 +4,10 @@ import (
 	"easyCardGen/service/admin"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 import "easyCardGen/model"
 
-// AddUser 用于用户逻辑处理
 func AddUser(c *gin.Context) {
 
 	var newUser model.User
@@ -24,4 +24,27 @@ func AddUser(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{"message": "User added successfully"})
+}
+
+func GetUserCount(c *gin.Context) {
+	count, err := admin.GetUserCount()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error_code": err.Error()})
+		return
+	}
+	c.JSON(200, gin.H{"count": count})
+}
+
+func GetUsersInfo(c *gin.Context) {
+	currentPage, _ := strconv.Atoi(c.DefaultQuery("currentPage", "1"))
+	//pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "1"))
+	var usersInfo []model.User
+	var err error
+	usersInfo, err = admin.GetUsersInfo(int64(currentPage), int64(10))
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error_code": err.Error()})
+	}
+
+	c.JSON(200, gin.H{"userData": usersInfo})
 }

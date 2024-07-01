@@ -41,3 +41,16 @@ func AddUser(user model.User) error {
 
 	return nil
 }
+
+func GetUserCount() (int64, error) {
+	count, err := users.GetUserCount()
+	return count, err
+}
+
+func GetUsersInfo(currentPage int64, pageSize int64) ([]model.User, error) {
+	usersInfo, err := users.GetUserInfo(currentPage, pageSize)
+	if err != nil {
+		return nil, err
+	}
+	return usersInfo, nil
+}

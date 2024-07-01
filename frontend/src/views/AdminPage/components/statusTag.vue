@@ -10,10 +10,13 @@ function getStatusTagType(message?: String) {
   switch (message) {
     case '正常':
       return 'success'
+    case 'active':
+      return 'success'
     case '停用':
       return ''
     case '封禁':
       return 'danger'
+
     default:
       return
 

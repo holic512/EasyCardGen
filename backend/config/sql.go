@@ -14,11 +14,11 @@ var db *gorm.DB
 func Init() {
 	var err error
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		"EasyCardGen",
-		"123456789",
-		"192.168.22.225",
+		"root",
+		"m13245jia",
+		"127.0.0.1",
 		"3306",
-		"EasyCardGen",
+		"easycardgen",
 	)
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -40,6 +40,11 @@ func migrate() {
 	// 这里进行自动迁移
 
 	//users
-	db.AutoMigrate(model.User{})
+	err := db.AutoMigrate(model.User{})
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("成功同步数据库")
 
 }

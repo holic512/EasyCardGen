@@ -179,6 +179,20 @@ const submitForm = (formEl: FormInstance | undefined) => {
     return;
   }
 
+  // 函数用于重置表单数据为初始值
+  const resetForm = () => {
+    userForm.value = {
+      username: '',
+      password: '',
+      confirmPassword: '',
+      email: '',
+      phone: '',
+      userType: 'user',
+      state: 'active'
+    };
+  };
+
+
   // 检测表单规范
   formEl.validate((valid) => {
     if (valid) {
@@ -197,6 +211,9 @@ const submitForm = (formEl: FormInstance | undefined) => {
                 message: '添加用户成功!',
                 type: 'success',
               })
+              // 初始化
+              resetForm()
+              addUserVisible.value = false
             }
           })
           .catch(error => {

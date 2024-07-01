@@ -12,7 +12,7 @@ type User struct {
 	IfEmail  bool
 	Phone    string `gorm:"type:varchar(255)"`
 	IfPhone  bool
-	userType string `gorm:"type:varchar(255)"`
+	UserType string `gorm:"type:varchar(255)"`
 	State    string `gorm:"type:varchar(255)"`
 
 	CreatedAt time.Time

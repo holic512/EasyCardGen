@@ -7,7 +7,8 @@ func adminGroup(server *gin.Engine) {
 	admin1 := server.Group("/api/admin")
 	{
 		admin1.POST("/addUser", admin.AddUser)
-
+		admin1.GET("/getUserCount", admin.GetUserCount)
+		admin1.GET("/getUserInfo", admin.GetUsersInfo)
 	}
 
 }
