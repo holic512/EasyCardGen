@@ -7,6 +7,7 @@ import {ElTable} from "element-plus";
 
 // statusTag 用于 状态组件
 import statusTag from "@/views/AdminPage/components/statusTag.vue";
+import AddStore from "@/views/AdminPage/StoreMm/StoreMm/components/addStore.vue";
 
 //todo 规定商店数据类型
 interface store_info {
@@ -67,6 +68,10 @@ const multipleSelection = ref<store_info[]>([])
 const handleSelectionChange = (val: store_info[]) => {
   multipleSelection.value = val
 }
+
+// addStoreVisible 用来控制 dialog显示
+let addStoreVisible = ref(false)
+
 </script>
 
 <template>
@@ -78,7 +83,7 @@ const handleSelectionChange = (val: store_info[]) => {
     <div style="margin-bottom: 10px">
       <el-input v-model="input" style="width: 240px;margin-right: 15px" placeholder="请输入搜索的提现id" clearable/>
       <el-button type="primary">搜索</el-button>
-      <el-button type="success">创建商店</el-button>
+      <el-button type="success" @click="addStoreVisible = true">创建商店</el-button>
       <el-button type="danger">批量封禁</el-button>
     </div>
 
@@ -124,10 +129,10 @@ const handleSelectionChange = (val: store_info[]) => {
 
 
     </el-table>
-
-
   </el-card>
 
+
+  <addStore v-model="addStoreVisible"/>
 </template>
 
 <style scoped>

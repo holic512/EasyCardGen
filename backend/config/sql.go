@@ -39,12 +39,17 @@ func GetDB() *gorm.DB {
 func migrate() {
 	// 这里进行自动迁移
 
-	//users
+	//迁移 用户 数据表
 	err := db.AutoMigrate(model.User{})
 	if err != nil {
-		fmt.Println(err)
 		return
 	}
-	fmt.Println("成功同步数据库")
 
+	//迁移 商店权限 数据表
+	err = db.AutoMigrate(model.StoreAccess{})
+	if err != nil {
+		return
+	}
+
+	fmt.Println("Success to migrate")
 }

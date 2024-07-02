@@ -7,6 +7,7 @@ import {ElTable} from "element-plus";
 
 // 引用 状态 tag
 import StatusTag from './components/StatusTag.vue';
+import AddStoreAccess from "@/views/AdminPage/StoreMm/AccessMm/components/addStoreAccess.vue";
 
 //用用于权限管理约束
 interface access_info {
@@ -62,6 +63,9 @@ const access_table = ref<access_info[]>([
   },
 
 ])
+
+// addStoreVisible 用于控制 dialog 显示
+let addStoreVisible = ref(false)
 </script>
 
 <template>
@@ -75,7 +79,7 @@ const access_table = ref<access_info[]>([
 
       <el-input v-model="input" style="width: 240px;margin-right: 15px" placeholder="请输入搜索的提现id" clearable/>
       <el-button type="primary">搜索</el-button>
-      <el-button type="success">创建权限</el-button>
+      <el-button type="success" @click="addStoreVisible = true">创建权限</el-button>
       <el-button type="danger">批量停用</el-button>
 
     </div>
@@ -137,6 +141,8 @@ const access_table = ref<access_info[]>([
 
     </el-table>
   </el-card>
+
+  <AddStoreAccess v-model="addStoreVisible"/>
 
 </template>
 

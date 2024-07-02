@@ -5,10 +5,10 @@ import {ElMessage, FormInstance, FormRules} from "element-plus";
 import axios from "axios";
 
 //addUserVisible 用于 控制添加表单 显示
-const addUserVisible = ref(false)
+let addUserVisible = ref(false)
 
 // userForm 用于存储表单信息
-const userForm = ref({
+let userForm = ref({
   username: '',
   password: '',
   confirmPassword: '',
@@ -23,47 +23,57 @@ const ruleFormRef = ref<FormInstance>()
 
 // validateName
 // @ts-ignore
-const validateName = (rule: any, value: any, callback: any) => {
+const validateName = (rule: any, value: string, callback: Function) => {
   if (value === '') {
-    callback(new Error('用户名不能为空'))
+    // 用户名不能为空
+    callback(new Error('用户名不能为空'));
+  } else if (!/^[A-Za-z0-9_]+$/.test(value)) {
+    // 用户名只能包含大小写英文字母、数字以及下划线
+    callback(new Error('用户名只能包含大小写英文、数字以及_'));
+  } else if (value.length < 4 || value.length > 12) {
+    // 用户名要至少4位且不大于12位
+    callback(new Error('用户名要至少4位且不大于12位'));
   } else {
-    if (value.length < 4 || value.length > 12) {
-      callback(new Error('用户名要至少4位且不大于12位'))
-    } else callback()
+    // 验证通过
+    callback();
   }
-}
+};
 
-// validatePass,validatePass2 用于 验证密码 规则
-// @ts-ignore
-const validatePass = (rule: any, value: any, callback: any) => {
+// 验证密码规则
+const validatePass = (rule: any, value: string, callback: Function) => {
   if (value === '') {
-    callback(new Error('密码不能为空'))
+    callback(new Error('密码不能为空'));
+  } else if (!/^[A-Za-z0-9_!@#$%^&*(),.?":{}|<>]+$/.test(value)) {
+    // 这里添加了更多的允许字符，你可以根据需要调整正则表达式
+    callback(new Error('密码只能包含大小写英文、数字以及允许的特殊字符（如!@#$%^&*(),.?":{}|<>）'));
+  } else if (value.length < 8) {
+    callback(new Error('密码不能小于8位'));
+  } else if (value.length > 16) {
+    callback(new Error('密码不能大于16位'));
   } else {
-    if (value.length < 8) {
-      callback(new Error('密码不能小于8位'))
-      return;
-    } else if (value.length > 16) {
-      callback(new Error('密码不能大于16位'))
-      return;
-    }
-
+    // 如果需要，可以在这里添加对confirmPassword的验证，但通常应该在confirmPassword的验证中做
+    // 不过，如果你确实想在这里触发confirmPassword的验证，确保ruleFormRef.value是有效的
     if (userForm.value.confirmPassword !== '') {
-      if (!ruleFormRef.value) return
-      ruleFormRef.value.validateField('confirmPassword')
+      if (!ruleFormRef.value) return;
+      ruleFormRef.value.validateField('confirmPassword');
     }
-    callback()
+    callback();
   }
-}
-// @ts-ignore
-const validatePass2 = (rule: any, value: any, callback: any) => {
+};
+
+// 验证确认密码规则
+const validatePass2 = (rule: any, value: string, callback: Function) => {
   if (value === '') {
-    callback(new Error('密码不能为空'))
+    callback(new Error('确认密码不能为空'));
   } else if (value !== userForm.value.password) {
-    callback(new Error("两次输入的密码不一致"))
+    callback(new Error("两次输入的密码不一致"));
+  } else if (!/^[A-Za-z0-9_!@#$%^&*(),.?":{}|<>]+$/.test(value)) {
+    // 同样，这里添加了与密码相同的字符规则
+    callback(new Error('确认密码只能包含大小写英文、数字以及允许的特殊字符（如!@#$%^&*(),.?":{}|<>）'));
   } else {
-    callback()
+    callback();
   }
-}
+};
 
 //validateEmail 用于 验证邮箱 规则
 // @ts-ignore
@@ -109,7 +119,7 @@ const rules = reactive<FormRules>({
 })
 
 
-// 用于实现 邮箱补全
+// restaurants 用于实现 邮箱补全
 const restaurants = [
   {value: '@qq.com'},
   {value: '@163.com'},
@@ -120,6 +130,7 @@ const restaurants = [
 
 ];
 
+// fetchSuggestions 用于 邮箱自动填充规则
 const fetchSuggestions = (queryString: string, cb: any) => {
 
   if (queryString === '') {
@@ -173,7 +184,7 @@ const typeOptions = [
   }
 ]
 
-
+// submitForm 用于提交表单
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) {
     return;
@@ -202,7 +213,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
         Password: userForm.value.password,
         Email: userForm.value.email,
         Phone: userForm.value.phone,
-        userType: userForm.value.userType,
+        UserType: userForm.value.userType,
         State: userForm.value.state,
       })
           .then(response => {
@@ -256,10 +267,10 @@ const resetForm = (formEl: FormInstance | undefined) => {
   <el-dialog v-model="addUserVisible" title="添加新用户">
     <el-form
         ref="ruleFormRef"
+        :rules="rules"
         :model="userForm"
         :label-position="'right'"
         label-width="auto"
-        :rules="rules"
     >
       <el-form-item
           label="用户名"

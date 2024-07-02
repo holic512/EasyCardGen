@@ -17,12 +17,12 @@ import {ElTable} from "element-plus";
 import axios from "axios";
 
 // addUserVisible 控制 添加页面显示
-const addUserVisible = ref(false)
+let addUserVisible = ref(false)
 
 
 // 分页管理
-const currentPage = ref(1)
-const itemCount = ref(100)
+let currentPage = ref(1)
+let itemCount = ref(100)
 
 //用于获取用户数目
 const getUserCount = () => {
@@ -46,26 +46,6 @@ watch(currentPage, (newValue) => {
 });
 
 //根据页数 获取用户数据
-//
-// const tableData = [
-//   {
-//     ID: 1,
-//     Username: 'name1',
-//     Phone: '12345678978',
-//     Email: '123123112@qq.com',
-//     UserType: '用户',
-//     State: '正常'
-//   },
-//   {
-//     ID: 2,
-//     Username: 'name2',
-//     Phone: '12345678978',
-//     Email: '123123112@qq.com',
-//     UserType: '商户',
-//     State: '封禁'
-//   },
-// ]
-
 let tableData = reactive([]);
 const getUserInfo = () => {
   axios.get('http://localhost:8080/api/admin/getUserInfo', {
@@ -92,6 +72,33 @@ onMounted(() => {
 const handleSelectionChange = (val: withdrawPending[]) => {
   multipleSelection.value = val
 }
+
+const getTypeMsg = (msg: string) => {
+  switch (msg) {
+    case 'user':
+      return '用户'
+
+    case 'merchant':
+      return '商户'
+
+    case 'admin':
+      return '管理员'
+  }
+}
+
+const getType = (msg: string) => {
+  switch (msg) {
+    case '用户':
+      return 'success'
+
+    case '商户':
+      return ''
+
+    case '管理员':
+      return 'danger'
+  }
+}
+
 </script>
 
 <template>
@@ -117,16 +124,16 @@ const handleSelectionChange = (val: withdrawPending[]) => {
         >
           <el-table-column type="selection" width="55"/>
           <el-table-column prop="ID" label="ID" width="55"/>
-          <el-table-column prop="Username" label="用户名" width="120"/>
+          <el-table-column prop="Username" label="用户名" width="100"/>
 
-          <el-table-column prop="Phone" label="电话"/>
-          <el-table-column prop="Email" label="邮箱"/>
+          <el-table-column prop="Phone" label="电话" width="140"/>
+          <el-table-column prop="Email" label="邮箱" width="220"/>
           <el-table-column prop="UserType" label="权限" width="120">
             <template #default="scope">
               <el-tag
-                  :type="scope.row.UserType === '商户' ? '' : 'success'"
+                  :type="getType(getTypeMsg(scope.row.UserType) )"
                   disable-transitions
-              >{{ scope.row.UserType }}
+              >{{ getTypeMsg(scope.row.UserType) }}
               </el-tag
               >
             </template>

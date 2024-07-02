@@ -1,7 +1,7 @@
-package controller_admin
+package controlleradmin
 
 import (
-	service_admin "easyCardGen/service/admin"
+	serviceadmin "easyCardGen/service/admin"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -17,7 +17,7 @@ func AddUser(c *gin.Context) {
 		return
 	}
 
-	err := service_admin.AddUser(newUser)
+	err := serviceadmin.AddUser(newUser)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error_code": err.Error()})
 		return
@@ -27,7 +27,7 @@ func AddUser(c *gin.Context) {
 }
 
 func GetUserCount(c *gin.Context) {
-	count, err := service_admin.GetUserCount()
+	count, err := serviceadmin.GetUserCount()
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error_code": err.Error()})
 		return
@@ -40,7 +40,7 @@ func GetUsersInfo(c *gin.Context) {
 	//pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "1"))
 	var usersInfo []model.User
 	var err error
-	usersInfo, err = service_admin.GetUsersInfo(int64(currentPage), int64(10))
+	usersInfo, err = serviceadmin.GetUsersInfo(int64(currentPage), int64(10))
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error_code": err.Error()})
