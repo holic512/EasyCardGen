@@ -5,7 +5,7 @@ import (
 	"easyCardGen/model"
 )
 
-// GetUserCount 用于 创建 用户信息
+// GetUserCount 用于 获取 用户数量
 func GetUserCount() (int64, error) {
 	db := config.GetDB()
 	var count int64

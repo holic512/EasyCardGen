@@ -6,7 +6,8 @@ import (
 	"fmt"
 )
 
-func GetUserInfo(currentPage int64, pageSize int64) ([]model.User, error) {
+// GetUsersInfo 用于获取 对应页数 用户信息
+func GetUsersInfo(currentPage int64, pageSize int64) ([]model.User, error) {
 	var users []model.User
 	offset := (currentPage - 1) * pageSize
 	limit := pageSize

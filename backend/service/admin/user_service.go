@@ -24,7 +24,7 @@ func AddUser(user model.User) error {
 
 	// 检测 用户名密码重复
 
-	err := repositoryusers.FindUser(user)
+	err := repositoryusers.CheckUserUniqueness(user)
 	if err != nil {
 		return err
 	}
@@ -50,7 +50,7 @@ func GetUserCount() (int64, error) {
 }
 
 func GetUsersInfo(currentPage int64, pageSize int64) ([]model.User, error) {
-	usersInfo, err := repositoryusers.GetUserInfo(currentPage, pageSize)
+	usersInfo, err := repositoryusers.GetUsersInfo(currentPage, pageSize)
 	if err != nil {
 		return nil, err
 	}
