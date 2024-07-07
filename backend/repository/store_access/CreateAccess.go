@@ -10,4 +10,5 @@ func CreateAccess(storeAccess model.StoreAccess) error {
 	db := config.GetDB()
 	db.Create(&storeAccess)
 	return nil
+
 }

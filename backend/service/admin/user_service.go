@@ -56,3 +56,12 @@ func GetUsersInfo(currentPage int64, pageSize int64) ([]model.User, error) {
 	}
 	return usersInfo, nil
 }
+
+func GetUserList() ([]model.UserListDto, error) {
+	//	调用 数据库查询
+	userList, err := repositoryusers.GetUserList()
+	if err != nil {
+		return nil, err
+	}
+	return userList, nil
+}

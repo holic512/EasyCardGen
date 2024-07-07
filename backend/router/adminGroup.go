@@ -2,6 +2,7 @@ package router
 
 import (
 	controlleradmin "easyCardGen/controller/admin"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,8 +12,10 @@ func adminGroup(server *gin.Engine) {
 		admin1.POST("/addUser", controlleradmin.AddUser)
 		admin1.GET("/getUserCount", controlleradmin.GetUserCount)
 		admin1.GET("/getUserInfo", controlleradmin.GetUsersInfo)
+		admin1.GET("/getUserList", controlleradmin.GetUserList)
 
 		admin1.POST("/addAccess", controlleradmin.AddAccess)
+		admin1.GET("/accessList", controlleradmin.GetAccessList)
 	}
 
 }

@@ -6,6 +6,7 @@ import (
 	"errors"
 )
 
+// AddAccess 用于添加商店权限
 func AddAccess(storeAccess model.StoreAccess) error {
 
 	// 检查数据规范性
@@ -26,4 +27,16 @@ func AddAccess(storeAccess model.StoreAccess) error {
 	}
 	// success
 	return nil
+}
+
+// GetAccessList 用于获取 商店权限列表
+func GetAccessList() ([]model.AccessListDto, error) {
+
+	// 调用数据查询
+	accessList, err := repositoryaccess.GetAccessList()
+	if err != nil {
+		return nil, err
+	}
+	return accessList, nil
+
 }
