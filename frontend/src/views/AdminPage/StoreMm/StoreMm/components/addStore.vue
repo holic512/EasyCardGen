@@ -40,7 +40,13 @@ onMounted(() => {
 
 <template>
   <el-dialog v-model="addStoreVisible" title="添加商店">
+    <el-form>
+      <el-form-item>
+        <el-select @focus="">
 
+        </el-select>
+      </el-form-item>
+    </el-form>
   </el-dialog>
 </template>
 
