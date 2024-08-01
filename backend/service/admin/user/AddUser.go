@@ -1,13 +1,13 @@
-package serviceadmin
+package service_admin_user
 
 import (
 	"easyCardGen/model"
 	repositoryusers "easyCardGen/repository/users"
-
 	"easyCardGen/utils"
 	"errors"
 )
 
+// AddUser 用于添加用户的服务层
 func AddUser(user model.User) error {
 
 	//验证数据规范性
@@ -42,26 +42,4 @@ func AddUser(user model.User) error {
 	}
 
 	return nil
-}
-
-func GetUserCount() (int64, error) {
-	count, err := repositoryusers.GetUserCount()
-	return count, err
-}
-
-func GetUsersInfo(currentPage int64, pageSize int64) ([]model.User, error) {
-	usersInfo, err := repositoryusers.GetUsersInfo(currentPage, pageSize)
-	if err != nil {
-		return nil, err
-	}
-	return usersInfo, nil
-}
-
-func GetUserList() ([]model.UserListDto, error) {
-	//	调用 数据库查询
-	userList, err := repositoryusers.GetUserList()
-	if err != nil {
-		return nil, err
-	}
-	return userList, nil
 }

@@ -2,7 +2,7 @@ package controller_admin_storeaccess
 
 import (
 	"easyCardGen/model"
-	serviceadmin "easyCardGen/service/admin"
+	serviceadminaccess "easyCardGen/service/admin/access"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -17,7 +17,7 @@ func AddAccess(c *gin.Context) {
 	}
 
 	//执行服务层
-	err = serviceadmin.AddAccess(storeAccess)
+	err = serviceadminaccess.AddAccess(storeAccess)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}

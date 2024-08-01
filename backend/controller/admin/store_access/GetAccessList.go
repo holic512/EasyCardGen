@@ -1,7 +1,7 @@
 package controller_admin_storeaccess
 
 import (
-	serviceadmin "easyCardGen/service/admin"
+	serviceadminaccess "easyCardGen/service/admin/access"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -10,7 +10,7 @@ import (
 func GetAccessList(c *gin.Context) {
 
 	//	调用服务层
-	accessList, err := serviceadmin.GetAccessList()
+	accessList, err := serviceadminaccess.GetList()
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}

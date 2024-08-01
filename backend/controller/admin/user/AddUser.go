@@ -2,7 +2,8 @@ package controller_admin_user
 
 import (
 	"easyCardGen/model"
-	serviceadmin "easyCardGen/service/admin"
+	service_admin_user "easyCardGen/service/admin/user"
+
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -17,7 +18,7 @@ func AddUser(c *gin.Context) {
 		return
 	}
 
-	err := serviceadmin.AddUser(newUser)
+	err := service_admin_user.AddUser(newUser)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error_code": err.Error()})
 		return

@@ -2,7 +2,7 @@ package controller_admin_user
 
 import (
 	"easyCardGen/model"
-	serviceadmin "easyCardGen/service/admin"
+	service_admin_user "easyCardGen/service/admin/user"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -14,7 +14,7 @@ func GetUsersInfo(c *gin.Context) {
 	//pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "1"))
 	var usersInfo []model.User
 	var err error
-	usersInfo, err = serviceadmin.GetUsersInfo(int64(currentPage), int64(10))
+	usersInfo, err = service_admin_user.GetData(int64(currentPage), int64(10))
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error_code": err.Error()})
