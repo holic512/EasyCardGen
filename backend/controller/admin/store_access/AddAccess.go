@@ -1,4 +1,4 @@
-package controlleradmin
+package controller_admin_storeaccess
 
 import (
 	"easyCardGen/model"
@@ -21,16 +21,5 @@ func AddAccess(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
-
-}
-
-func GetAccessList(c *gin.Context) {
-
-	//	调用服务层
-	accessList, err := serviceadmin.GetAccessList()
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	}
-	c.JSON(http.StatusOK, gin.H{"accessList": accessList})
 
 }

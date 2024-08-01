@@ -29,10 +29,10 @@ type User struct {
 	// IfPhone 是否验证电话
 	IfPhone bool
 
-	// 用户身份 用户 0 商户 1 管理员 2
+	// UserType 用户身份 (用户 0 商户 1 管理员 2)
 	UserType string `gorm:"type:char(1)"`
 
-	// 状态 0 禁用 1 启用 2 封禁
+	// State 状态 (禁用 0  启用 1 封禁 2)
 	State string `gorm:"type:char(1)"`
 
 	// 账号创建时间

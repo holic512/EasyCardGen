@@ -4,16 +4,26 @@ import "time"
 
 // StoreAccess 用于 商店权限
 type StoreAccess struct {
-	ID              uint   `gorm:"primaryKey"`
-	AccessName      string `gorm:"type:varchar(255)"`
-	Type            string `gorm:"type:varchar(255)"`
-	MaxClassCount   uint
+	ID uint `gorm:"primaryKey"`
+
+	AccessName string `gorm:"type:varchar(255)"`
+
+	Type string `gorm:"type:varchar(255)"`
+
+	MaxClassCount uint
+
 	MaxProductCount uint
-	Weight          uint
-	WithdrawalFee   float64
-	DiscountCode    bool
-	MembershipCard  bool
-	KeywordReply    bool
+
+	Weight uint
+
+	WithdrawalFee float64
+
+	DiscountCode bool
+
+	MembershipCard bool
+
+	KeywordReply bool
+
 	PlatformService bool
 
 	CreatedAt time.Time
