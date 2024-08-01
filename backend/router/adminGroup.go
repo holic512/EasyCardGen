@@ -17,6 +17,7 @@ func adminGroup(server *gin.Engine) {
 
 		admin1.POST("/addAccess", controlleradminstoreaccess.AddAccess)
 		admin1.GET("/accessList", controlleradminstoreaccess.GetAccessList)
+		admin1.GET("/getAccessCount", controlleradminstoreaccess.GetCount)
 	}
 
 }
